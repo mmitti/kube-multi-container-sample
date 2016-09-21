@@ -1,0 +1,54 @@
+kind: ReplicationController
+apiVersion: v1
+metadata:
+  name: test-db-viewer
+  labels:
+    app: test-db-viewer
+spec:
+  replicas: 2
+  selector:
+    app: test-db-viewer
+  template:
+    metadata:
+      name: test-db-viewer
+      labels:
+        app: test-db-viewer
+    spec:
+      containers:
+      - name: test-db-viewer
+        image: mmitti/test-db-viewer
+        ports:
+        - containerPort: 5000
+          hostPort: 5000
+        volumeMounts:
+        - name: data
+          mountPath: /db
+          readOnly: true
+      - name: test-db
+        image: mmitti/test-db
+        ports:
+        - containerPort: 8000
+          hostPort: 8000
+        volumeMounts:
+        - name: data
+          mountPath: /db
+      volumes:
+      - name: data
+        emptyDir: {}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: test-db-viewer
+  labels:
+    app: test-db-viewer
+spec:
+  ports:
+  - name: viewer
+    protocol: TCP
+    port: 5000
+  - name: db
+    protocol: TCP
+    port: 8000
+  selector:
+    app: test-db-viewer
