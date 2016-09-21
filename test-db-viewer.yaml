@@ -19,7 +19,6 @@ spec:
         image: mmitti/test-db-viewer
         ports:
         - containerPort: 5000
-          hostPort: 5000
         volumeMounts:
         - name: data
           mountPath: /db
@@ -28,7 +27,6 @@ spec:
         image: mmitti/test-db
         ports:
         - containerPort: 8000
-          hostPort: 8000
         volumeMounts:
         - name: data
           mountPath: /db
