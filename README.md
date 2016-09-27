@@ -11,6 +11,6 @@ http://kubernetes masterのIP:kubernetes APIのポート番号/api/v1/proxy/name
 にアクセスすれば動きます。
 
 ## アクセスした画面について
-![](https://raw.githubusercontent.com/mmitti/kube-multi-container-sample/master/img.PNG "サンプル")
+![](https://raw.githubusercontent.com/mmitti/kube-multi-container-sample/master/img.png "サンプル")
 
 ## test-db-viewer
